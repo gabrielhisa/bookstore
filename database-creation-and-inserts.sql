@@ -2,9 +2,6 @@ DROP DATABASE bookstore;
 CREATE DATABASE IF NOT EXISTS bookstore;
 USE bookstore;
 
--- ALTER TABLE Book
--- DROP FOREIGN KEY book_ibfk_1;
-
 DROP TABLE IF EXISTS Client CASCADE;
 DROP TABLE IF EXISTS Book CASCADE;
 
@@ -13,7 +10,7 @@ CREATE TABLE Client (
     ClientID INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(255) NOT NULL,
     Address VARCHAR(255) NOT NULL,
-    DateOfBirth DATE NOT NULL,
+    DateOfBirth DATE,
     Document VARCHAR(255)
 );
 
@@ -27,7 +24,7 @@ CREATE TABLE Book (
     Genre VARCHAR(255) NOT NULL,
     Status ENUM('new', 'semi-used', 'used') NOT NULL,
     Weight DECIMAL(10, 2) NOT NULL,
-    NumPages INT NOT NULL,
+    NumPages INT,
     Price DECIMAL(10, 2) NOT NULL,
     ClientID INT,
     FOREIGN KEY (ClientID) REFERENCES Client(ClientID)
