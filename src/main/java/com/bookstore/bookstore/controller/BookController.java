@@ -52,17 +52,17 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(book));
     }
 
-    // Not working 100%, does not return the error message if ID is non existent
+    // Working as intended
     @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable long id){
         Optional<Book> temp = Optional.of(new Book());
         temp = repository.findById(id);
 
-        if (temp.isPresent()){
-            throw new RuntimeException("Employee id not found - " + id);
-        } else {
-            repository.deleteById(id);
-            return "Deleted registry ID " + id;
+        if (temp.isEmpty()){
+            return "Book id not found - " + id;
         }
+
+        repository.deleteById(id);
+        return "Deleted registry ID " + id;
     }
 }
