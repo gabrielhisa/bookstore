@@ -22,12 +22,12 @@ public class SecurityConfiguration {
 
         // Making is custom by defining a query to retrieve a user by username
         jdbcUserDetailsManager.setUsersByUsernameQuery(
-                "select user_id, pw, active from members where user_id=?"
+                "select username, password, enabled from user where username=?"
         );
 
         // Define query to retrieve the authorities/roles by username
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
-                "select user_id, role from roles where user_id=?"
+                "select username, auth from authorization where username=?"
         );
 
         return jdbcUserDetailsManager;
