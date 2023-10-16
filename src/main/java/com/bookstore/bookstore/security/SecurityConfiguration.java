@@ -42,6 +42,12 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/books/newbook").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.PUT, "/books/update/**").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.DELETE, "/books/delete/**").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/clients/all").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.GET, "/clients/**").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.POST, "/clients/newclient").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.PUT, "/clients/update/**").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.DELETE, "/clients/delete/**").hasRole("ADMIN")
         );
 
         // Using HTTP Basic Auth
